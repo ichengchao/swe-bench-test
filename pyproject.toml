@@ -1,0 +1,12 @@
+[project]
+name = "mathutils"
+version = "0.1.0"
+description = "A simple math utilities library for SWE-bench testing"
+requires-python = ">=3.8"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
