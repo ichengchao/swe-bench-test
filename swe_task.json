@@ -1,0 +1,34 @@
+[
+  {
+    "instance_id": "ichengchao__swe-bench-test-1",
+    "repo": "ichengchao/swe-bench-test",
+    "base_commit": "932468602d3778403ec173ca7a1151d329c9e027",
+    "problem_statement": "fibonacci(0) returns 1 instead of 0\n\n## Bug Description\n\nThe `fibonacci(0)` function returns `1` instead of the expected `0`.\n\n## Steps to Reproduce\n\n```python\nfrom mathutils import fibonacci\n\nprint(fibonacci(0))  # Expected: 0, Actual: 1\n```\n\n## Expected Behavior\n\n`fibonacci(0)` should return `0`, since the Fibonacci sequence is defined as:\n- F(0) = 0\n- F(1) = 1\n- F(n) = F(n-1) + F(n-2)\n\n## Actual Behavior\n\n`fibonacci(0)` returns `1`.\n\n## Test Failure\n\n```\nFAILED tests/test_core.py::TestFibonacci::test_zero - assert 1 == 0\n```",
+    "patch": "diff --git a/mathutils/core.py b/mathutils/core.py\nindex 713fd8c..a54e80d 100644\n--- a/mathutils/core.py\n+++ b/mathutils/core.py\n@@ -43,7 +43,9 @@ def fibonacci(n):\n     \"\"\"\n     if n < 0:\n         raise ValueError(\"Fibonacci is not defined for negative numbers\")\n-    if n <= 1:\n+    if n == 0:\n+        return 0\n+    if n == 1:\n         return 1\n     a, b = 0, 1\n     for _ in range(2, n + 1):\n",
+    "test_patch": "",
+    "FAIL_TO_PASS": [
+      "tests/test_core.py::TestFibonacci::test_zero"
+    ],
+    "PASS_TO_PASS": [
+      "tests/test_core.py::TestAdd::test_positive",
+      "tests/test_core.py::TestAdd::test_negative",
+      "tests/test_core.py::TestAdd::test_zero",
+      "tests/test_core.py::TestSubtract::test_basic",
+      "tests/test_core.py::TestSubtract::test_negative_result",
+      "tests/test_core.py::TestMultiply::test_basic",
+      "tests/test_core.py::TestMultiply::test_zero",
+      "tests/test_core.py::TestDivide::test_basic",
+      "tests/test_core.py::TestDivide::test_float_result",
+      "tests/test_core.py::TestDivide::test_divide_by_zero",
+      "tests/test_core.py::TestFactorial::test_zero",
+      "tests/test_core.py::TestFactorial::test_one",
+      "tests/test_core.py::TestFactorial::test_five",
+      "tests/test_core.py::TestFactorial::test_negative",
+      "tests/test_core.py::TestFibonacci::test_one",
+      "tests/test_core.py::TestFibonacci::test_two",
+      "tests/test_core.py::TestFibonacci::test_ten",
+      "tests/test_core.py::TestFibonacci::test_negative"
+    ],
+    "environment_setup_commit": "1620de8"
+  }
+]
